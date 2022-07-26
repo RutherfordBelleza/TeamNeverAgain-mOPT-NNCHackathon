@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mopt_nav"
+    app:startDestination="@id/listFragment">
+
+    <fragment
+        android:id="@+id/listFragment"
+        android:name="com.neveragain.prototype.mopt.fragment.list.ListFragment"
+        android:label="fragment_list"
+        tools:layout="@layout/fragment_list" >
+        <action
+            android:id="@+id/action_listFragment_to_newSubjectFragment"
+            app:destination="@id/newSubjectFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_childInformationFragment"
+            app:destination="@id/childInformationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newSubjectFragment"
+        android:name="com.neveragain.prototype.mopt.fragment.add.NewChildFragment"
+        android:label="fragment_new_subject"
+        tools:layout="@layout/fragment_new_child" >
+        <action
+            android:id="@+id/action_newSubjectFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/childInformationFragment"
+        android:name="com.neveragain.prototype.mopt.ChildInformationFragment"
+        android:label="fragment_child_information"
+        tools:layout="@layout/fragment_child_information" >
+        <action
+            android:id="@+id/action_childInformationFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+        <argument
+            android:name="infoChildId"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <argument
+            android:name="infoChildName"
+            app:argType="string"
+            android:defaultValue='""' />
+        <argument
+            android:name="infoAddress"
+            app:argType="string"
+            android:defaultValue='""' />
+        <argument
+            android:name="infoCaregiverName"
+            app:argType="string"
+            android:defaultValue='""' />
+        <argument
+            android:name="infoCaregiverContact"
+            app:argType="string"
+            android:defaultValue='""' />
+        <argument
+            android:name="infoBirthDate"
+            app:argType="string"
+            android:defaultValue='""' />
+        <argument
+            android:name="infoWeighingDate"
+            app:argType="string"
+            android:defaultValue='""' />
+        <argument
+            android:name="infoHeight"
+            app:argType="float"
+            android:defaultValue="0.0" />
+        <argument
+            android:name="infoWeight"
+            app:argType="float"
+            android:defaultValue="0.0" />
+        <argument
+            android:name="infoSex"
+            app:argType="string"
+            android:defaultValue='""' />
+    </fragment>
+</navigation>

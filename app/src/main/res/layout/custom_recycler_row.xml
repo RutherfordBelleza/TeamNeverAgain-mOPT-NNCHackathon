@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clickableLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="2dp"
+    android:layout_marginBottom="2dp"
+    android:background="@drawable/custom_row_container"
+    android:clickable="true"
+    android:focusable="true"
+    android:longClickable="false">
+
+    <TextView
+        android:id="@+id/ageInMonthsText2"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginEnd="1dp"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="Birthday: 11/11/11"
+        android:textSize="12dp"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/childNameText" />
+
+    <TextView
+        android:id="@+id/childNameText"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginStart="4dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="Bobby Balboa"
+        android:textColor="#4C4B4B"
+        android:textSize="18sp"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintEnd_toStartOf="@+id/ageInMonthsText2"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@+id/sexIndicatorImage"
+        app:layout_constraintTop_toTopOf="@id/sexIndicatorImage" />
+
+    <ImageView
+        android:id="@+id/sexIndicatorImage"
+        android:layout_width="60dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_male_face_24" />
+
+    <TextView
+        android:id="@+id/weightForAge"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/normal_nutritional_status_bg"
+        android:gravity="center"
+        android:padding="3dp"
+        android:text="N"
+        android:textSize="14dp"
+        app:layout_constraintStart_toEndOf="@+id/sexIndicatorImage"
+        app:layout_constraintTop_toBottomOf="@+id/childNameText" />
+
+    <TextView
+        android:id="@+id/heightForAge"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="3dp"
+        android:background="@drawable/bad_nutritional_status_bg"
+        android:gravity="center"
+        android:padding="3dp"
+        android:text="ST"
+        android:textSize="14dp"
+        app:layout_constraintStart_toEndOf="@+id/weightForAge"
+        app:layout_constraintTop_toTopOf="@id/weightForAge" />
+
+    <TextView
+        android:id="@+id/weightForHeight"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="3dp"
+        android:background="@drawable/worst_nutritional_status_bg"
+        android:gravity="center"
+        android:padding="3dp"
+        android:text="SAM"
+        android:textSize="14dp"
+        app:layout_constraintStart_toEndOf="@+id/heightForAge"
+        app:layout_constraintTop_toTopOf="@id/weightForAge" />
+
+    <TextView
+        android:id="@+id/ageInMonthsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        android:singleLine="true"
+        android:text="Age: 5 Months"
+        android:textSize="12dp"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

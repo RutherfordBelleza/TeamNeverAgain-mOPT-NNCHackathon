@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChildInformationFragment">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:contentDescription="edit button"
+        android:src="@drawable/ic_baseline_edit_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingStart="8dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/infoChildNameText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Bobby Balboa"
+                android:textColor="#323232"
+                android:textSize="28sp" />
+
+            <TextView
+                android:id="@+id/infoAddressLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Address"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/infoAddressText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="1234 Some Street, Some Village, Some City, Some Province"
+                android:textColor="#323232"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/infoCaregiverNameLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mother/Caregiver's Name"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/infoCareGiverNameText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Bobby's Mom"
+                android:textColor="#323232"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/infoCaregiverContactLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mother/Caregiver's Contact"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/infoCareGiverContactText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="09111111111"
+                android:textColor="#323232"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/infoBirthDateLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Date of Birth"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/infoBirthDateText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="11/11/98"
+                android:textColor="#323232"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/infoWeighingDateLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Actual Weighing Date"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/infoWeighingDateText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="11/11/22"
+                android:textColor="#323232"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/infoSexLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sex"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/infoSexText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Male"
+                android:textColor="#323232"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/infoHeightLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Height(cm)"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/infoHeightText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="80"
+                android:textColor="#323232"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/infoWeightLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Weight(kg)"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/infoWeightText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="4.0"
+                android:textColor="#323232"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/infoAgeInMonthsLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Age(Months)"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/infoAgeInMonthsText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="23"
+                android:textColor="#323232"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/infoWeightOverHeightLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Weight/Height"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/infoWeightOverHeightText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="2.4 (Wasted)"
+                android:textColor="#323232"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/infoWeightOverAgeLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Weight/Age"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/infoWeightOverAgeText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="5.3 (Normal)"
+                android:textColor="#323232"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/infoHeightOverAgeLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Height/Age"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/infoHeightOverAgeText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="3.4 (Normal)"
+                android:textColor="#323232"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

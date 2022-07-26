@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">mOPT</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="is_indigenous_values">
+        <item>YES</item>
+        <item>NO</item>
+    </string-array>
+    <string-array name="sex_values">
+        <item>F</item>
+        <item>M</item>
+    </string-array>
+</resources>
