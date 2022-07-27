@@ -4,17 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.info.ChildInformationFragment">
+    tools:context=".fragment.update.UpdateChildFragment">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/editChildButton"
+        android:id="@+id/confirmUpdateButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:clickable="true"
-        android:contentDescription="edit button"
-        android:src="@drawable/ic_baseline_edit_24"
+        android:contentDescription="update button"
+        android:src="@drawable/ic_baseline_check_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -25,7 +25,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingStart="8dp"
             android:paddingTop="10dp"
@@ -38,209 +38,169 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/infoChildNameText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/updateChildNameField"
+                android:text="Child's Name"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/updateChildNameField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="Bobby Balboa"
-                android:textColor="#323232"
-                android:textSize="28sp" />
+                android:background="@drawable/custom_edittext"
+                android:minHeight="48dp"
+                android:theme="@style/CustomEditText" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:labelFor="@id/updateAddressField"
                 android:text="Address"
                 android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/infoAddressText"
+            <EditText
+                android:id="@+id/updateAddressField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="1234 Some Street, Some Village, Some City, Some Province"
-                android:textColor="#323232"
-                android:textSize="16sp" />
+                android:background="@drawable/custom_edittext"
+                android:minHeight="48dp"
+                android:theme="@style/CustomEditText" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:labelFor="@id/updateCaregiverNameField"
                 android:text="Mother/Caregiver's Name"
                 android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/infoCareGiverNameText"
+            <EditText
+                android:id="@+id/updateCaregiverNameField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="Bobby's Mom"
-                android:textColor="#323232"
-                android:textSize="16sp" />
+                android:background="@drawable/custom_edittext"
+                android:minHeight="48dp"
+                android:theme="@style/CustomEditText" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:labelFor="@id/updateCaregiverContactField"
                 android:text="Mother/Caregiver's Contact"
                 android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/infoCareGiverContactText"
+            <EditText
+                android:id="@+id/updateCaregiverContactField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="09111111111"
-                android:textColor="#323232"
-                android:textSize="16sp" />
+                android:background="@drawable/custom_edittext"
+                android:inputType="number"
+                android:minHeight="48dp"
+                android:theme="@style/CustomEditText" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:labelFor="@id/updateBirthDateField"
                 android:text="Date of Birth"
                 android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/infoBirthDateText"
+            <EditText
+                android:id="@+id/updateBirthDateField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="11/11/98"
-                android:textColor="#323232"
-                android:textSize="16sp" />
+                android:background="@drawable/custom_edittext"
+                android:clickable="true"
+                android:focusable="false"
+                android:longClickable="false"
+                android:minHeight="48dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:labelFor="@id/updateWeighingDateField"
                 android:text="Actual Weighing Date"
                 android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/infoWeighingDateText"
+            <EditText
+                android:id="@+id/updateWeighingDateField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="11/11/22"
-                android:textColor="#323232"
-                android:textSize="16sp" />
+                android:background="@drawable/custom_edittext"
+                android:clickable="true"
+                android:focusable="false"
+                android:longClickable="false"
+                android:minHeight="48dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:labelFor="@id/updateIsIndigenousPreschoolChildField"
                 android:text="Is Indigenous Preschool Child?"
                 android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/infoIsIndigenousPreschoolChildText"
+            <Spinner
+                android:id="@+id/updateIsIndigenousPreschoolChildField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="No"
-                android:textColor="#323232"
-                android:textSize="16sp" />
+                android:background="@drawable/custom_edittext"
+                android:minHeight="48dp"
+                android:spinnerMode="dialog" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:labelFor="@id/updateSexField"
                 android:text="Sex"
                 android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/infoSexText"
+            <Spinner
+                android:id="@+id/updateSexField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="Male"
-                android:textColor="#323232"
-                android:textSize="16sp" />
+                android:background="@drawable/custom_edittext"
+                android:minHeight="48dp"
+                android:spinnerMode="dialog" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:labelFor="@id/updateHeightField"
                 android:text="Height(cm)"
                 android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/infoHeightText"
+            <EditText
+                android:id="@+id/updateHeightField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="80"
-                android:textColor="#323232"
-                android:textSize="16sp" />
+                android:background="@drawable/custom_edittext"
+                android:inputType="numberDecimal"
+                android:minHeight="48dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:labelFor="@id/updateWeightField"
                 android:text="Weight(kg)"
                 android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/infoWeightText"
+            <EditText
+                android:id="@+id/updateWeightField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="4.0"
-                android:textColor="#323232"
-                android:textSize="16sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Age(Months)"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/infoAgeInMonthsText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="23"
-                android:textColor="#323232"
-                android:textSize="16sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Weight/Height"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/infoWeightOverHeightText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="2.4 (Wasted)"
-                android:textColor="#323232"
-                android:textSize="16sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Weight/Age"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/infoWeightOverAgeText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="5.3 (Normal)"
-                android:textColor="#323232"
-                android:textSize="16sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Height/Age"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/infoHeightOverAgeText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="3.4 (Normal)"
-                android:textColor="#323232"
-                android:textSize="16sp" />
-
+                android:background="@drawable/custom_edittext"
+                android:inputType="numberDecimal"
+                android:minHeight="48dp" />
         </LinearLayout>
     </ScrollView>
 

@@ -22,7 +22,7 @@ class ListFragment : Fragment(), ListClickHandler {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentListBinding.inflate(inflater, container, false)
 
@@ -58,6 +58,7 @@ class ListFragment : Fragment(), ListClickHandler {
         bundle.putFloat("infoHeight", child.height.toFloat())
         bundle.putFloat("infoWeight", child.weight.toFloat())
         bundle.putString("infoSex", child.sex)
+        bundle.putString("infoIsIndigenousPreschoolChild", child.isIndigenousPreschoolChild)
         findNavController().navigate(R.id.action_listFragment_to_childInformationFragment, bundle)
     }
 

@@ -23,4 +23,10 @@ class ChildViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun updateChild(child: Child) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateChild(child)
+        }
+    }
+
 }

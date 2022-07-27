@@ -7,4 +7,9 @@ class ChildRepository(private val childDAO: ChildDao) {
     suspend fun addChild(child: Child) {
         childDAO.addChild(child)
     }
+
+    suspend fun updateChild(child: Child){
+        childDAO.updateChild(child)
+    }
+
 }
