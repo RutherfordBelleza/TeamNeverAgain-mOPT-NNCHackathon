@@ -2,21 +2,19 @@ package com.neveragain.prototype.mopt.fragment.update
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.neveragain.prototype.mopt.R
 import com.neveragain.prototype.mopt.calculations.DateCalculations
 import com.neveragain.prototype.mopt.data.Child
 import com.neveragain.prototype.mopt.data.ChildViewModel
-import com.neveragain.prototype.mopt.databinding.FragmentChildInformationBinding
 import com.neveragain.prototype.mopt.databinding.FragmentUpdateChildBinding
-import java.util.*
 
 class UpdateChildFragment : Fragment() {
 
@@ -42,8 +40,8 @@ class UpdateChildFragment : Fragment() {
             bundle.getString("infoIsIndigenousPreschoolChild")!!,
             bundle.getString("infoBirthDate")!!,
             bundle.getString("infoWeighingDate")!!,
-            bundle.getFloat("infoHeight").toDouble(),
-            bundle.getFloat("infoWeight").toDouble()
+            bundle.getFloat("infoWeight").toDouble(),
+            bundle.getFloat("infoHeight").toDouble()
         )
 
         val dateListener = DateCalculations.createDateListener(requireContext(), null, null)
@@ -136,8 +134,8 @@ class UpdateChildFragment : Fragment() {
             bundle.putString("infoCaregiverContact", newChild.contactOfCaregiver)
             bundle.putString("infoBirthDate", newChild.dateOfBirth)
             bundle.putString("infoWeighingDate", newChild.dateOfWeighing)
-            bundle.putFloat("infoHeight", newChild.height.toFloat())
             bundle.putFloat("infoWeight", newChild.weight.toFloat())
+            bundle.putFloat("infoHeight", newChild.height.toFloat())
             bundle.putString("infoSex", newChild.sex)
             bundle.putString("infoIsIndigenousPreschoolChild", newChild.isIndigenousPreschoolChild)
             Log.i("RUTHER", "CHILD ID = " + newChild.id)

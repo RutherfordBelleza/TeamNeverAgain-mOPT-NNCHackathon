@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.neveragain.prototype.mopt.R
+import com.neveragain.prototype.mopt.calculations.*
 import com.neveragain.prototype.mopt.data.Child
 import com.neveragain.prototype.mopt.databinding.FragmentChildInformationBinding
 
@@ -34,8 +35,8 @@ class ChildInformationFragment : Fragment() {
             bundle.getString("infoIsIndigenousPreschoolChild")!!,
             bundle.getString("infoBirthDate")!!,
             bundle.getString("infoWeighingDate")!!,
-            bundle.getFloat("infoHeight").toDouble(),
-            bundle.getFloat("infoWeight").toDouble()
+            bundle.getFloat("infoWeight").toDouble(),
+            bundle.getFloat("infoHeight").toDouble()
         )
 
         binding.infoChildNameText.text = currentChild.fullName
@@ -50,11 +51,29 @@ class ChildInformationFragment : Fragment() {
         binding.infoSexText.text = currentChild.sex
         binding.infoHeightText.text = currentChild.height.toString()
         binding.infoWeightText.text = currentChild.weight.toString()
-        binding.infoAgeInMonthsText.text = "Not Coded Yet"
 
-        binding.infoWeightOverHeightText.text = "Not Coded Yet"
-        binding.infoWeightOverAgeText.text = "Not Coded Yet"
-        binding.infoHeightOverAgeText.text = "Not Coded Yet"
+        val ageInMonths = DateCalculations.getMonthsBetweenDateStrings(
+            currentChild.dateOfBirth,
+            currentChild.dateOfWeighing
+        )
+        binding.infoAgeInMonthsText.text = "$ageInMonths Months"
+
+        val wflh = OptCalculator.getWeightForHeight(
+            currentChild.height,
+            currentChild.weight,
+            ageInMonths,
+            currentChild.sex == "F"
+        )
+        val wflhString = WeightForHeightValues.getFullStringEquivalent(wflh)
+        binding.infoWeightOverHeightText.text = "$wflhString"
+
+        val wfa = OptCalculator.getWeightForAge(currentChild.weight, ageInMonths, currentChild.sex == "F")
+        val wfaString = WeightForAgeValues.getFullStringEquivalent(wfa)
+        binding.infoWeightOverAgeText.text = "$wfaString"
+
+        val hfa = OptCalculator.getHeightForAge(currentChild.height, ageInMonths, currentChild.sex == "F")
+        val hfaString = HeightForAgeValues.getFullStringEquivalent(hfa)
+        binding.infoHeightOverAgeText.text = "$hfaString"
 
         binding.editChildButton.setOnClickListener {
             editChild()

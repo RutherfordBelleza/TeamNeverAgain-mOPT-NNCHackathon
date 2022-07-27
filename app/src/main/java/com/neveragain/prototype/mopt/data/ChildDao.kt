@@ -14,4 +14,10 @@ interface ChildDao {
     @Query("SELECT * FROM child_table ORDER BY id ASC")
     fun getAllData(): LiveData<List<Child>>
 
+    @Query("SELECT * FROM child_table ORDER BY id ASC")
+    suspend fun selectAll(): List<Child>
+
+    @Query("DELETE FROM child_table")
+    suspend fun deleteAll()
+
 }

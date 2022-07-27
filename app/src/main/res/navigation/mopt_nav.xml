@@ -8,34 +8,38 @@
     <fragment
         android:id="@+id/listFragment"
         android:name="com.neveragain.prototype.mopt.fragment.list.ListFragment"
-        android:label="fragment_list"
+        android:label="Menu"
         tools:layout="@layout/fragment_list" >
         <action
             android:id="@+id/action_listFragment_to_newSubjectFragment"
-            app:destination="@id/newSubjectFragment" />
+            app:destination="@id/newSubjectFragment"
+            app:launchSingleTop="true" />
         <action
             android:id="@+id/action_listFragment_to_childInformationFragment"
-            app:destination="@id/childInformationFragment" />
+            app:destination="@id/childInformationFragment"
+            app:launchSingleTop="true" />
     </fragment>
     <fragment
         android:id="@+id/newSubjectFragment"
         android:name="com.neveragain.prototype.mopt.fragment.add.NewChildFragment"
-        android:label="fragment_new_subject"
+        android:label="Add Child"
         tools:layout="@layout/fragment_new_child" >
         <action
             android:id="@+id/action_newSubjectFragment_to_listFragment"
             app:destination="@id/listFragment"
+            app:launchSingleTop="true"
             app:popUpTo="@id/listFragment"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/childInformationFragment"
         android:name="com.neveragain.prototype.mopt.fragment.info.ChildInformationFragment"
-        android:label="fragment_child_information"
+        android:label="Child Information"
         tools:layout="@layout/fragment_child_information" >
         <action
             android:id="@+id/action_childInformationFragment_to_listFragment"
             app:destination="@id/listFragment"
+            app:launchSingleTop="true"
             app:popUpTo="@id/listFragment"
             app:popUpToInclusive="true" />
         <argument
@@ -80,7 +84,8 @@
             android:defaultValue='""' />
         <action
             android:id="@+id/action_childInformationFragment_to_updateChildFragment2"
-            app:destination="@id/updateChildFragment2" />
+            app:destination="@id/updateChildFragment2"
+            app:launchSingleTop="true" />
         <argument
             android:name="infoIsIndigenousPreschoolChild"
             app:argType="string"
@@ -89,7 +94,7 @@
     <fragment
         android:id="@+id/updateChildFragment2"
         android:name="com.neveragain.prototype.mopt.fragment.update.UpdateChildFragment"
-        android:label="fragment_update_child"
+        android:label="Edit Child"
         tools:layout="@layout/fragment_update_child" >
         <argument
             android:name="infoChildId"
@@ -134,6 +139,7 @@
         <action
             android:id="@+id/action_updateChildFragment2_to_childInformationFragment"
             app:destination="@id/childInformationFragment"
+            app:launchSingleTop="true"
             app:popUpTo="@id/childInformationFragment"
             app:popUpToInclusive="true" />
         <argument

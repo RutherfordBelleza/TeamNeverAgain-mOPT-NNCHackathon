@@ -55,5 +55,18 @@ class DateCalculations {
             // returns dd/MM/yyyy
             return formDateFormat.format(d)
         }
+
+        fun getMonthsBetweenDateStrings(earlierDate: String, laterDate: String): Int {
+            val date1 = formDateStringToDate(earlierDate)
+            val date2 = formDateStringToDate(laterDate)
+            val diff: Long = date2.time - date1.time
+            val seconds = diff / 1000
+            val minutes = seconds / 60
+            val hours = minutes / 60
+            val days = hours / 24
+            val months = days / 30
+            return months.toInt()
+        }
+
     }
 }

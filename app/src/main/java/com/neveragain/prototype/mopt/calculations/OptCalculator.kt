@@ -6,6 +6,9 @@ class OptCalculator {
     companion object {
 
         fun getHeightForAge(height: Double, ageInMonths: Int, isFemale: Boolean): Int {
+            if (ageInMonths > 72) {
+                return HeightForAgeValues.HEIGHT_STATUS_TOO_OLD
+            }
             if (isFemale) {
                 return if (height <= HeightForAgeValues.femaleHeightForAge[ageInMonths][0]) {
                     HeightForAgeValues.HEIGHT_STATUS_SEVERLY_STUNTED
@@ -30,6 +33,9 @@ class OptCalculator {
         }
 
         fun getWeightForAge(weight: Double, ageInMonths: Int, isFemale: Boolean): Int {
+            if (ageInMonths > 72) {
+                return WeightForAgeValues.WEIGHT_STATUS_TOO_OLD
+            }
             if (isFemale) {
                 return if (weight <= WeightForAgeValues.femaleWeightForAge[ageInMonths][0]) {
                     WeightForAgeValues.WEIGHT_STATUS_SEVERLY_UNDERWEIGHT
@@ -56,6 +62,9 @@ class OptCalculator {
             isFemale: Boolean
         ): Int {
             val heightIndex = (round(height * 2) - 90).toInt()
+            if (ageInMonths > 72) {
+                return WeightForHeightValues.HEALTH_STATUS_TOO_OLD
+            }
             if (ageInMonths < 24) {
                 if (isFemale) {
                     return if (weight <= WeightForHeightValues.femaleWeightForHeight_0to24[heightIndex][0]) {

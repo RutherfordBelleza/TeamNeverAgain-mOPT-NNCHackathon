@@ -1,11 +1,30 @@
 package com.neveragain.prototype.mopt.calculations
 
 class WeightForAgeValues {
-    companion object{
+    companion object {
 
         val WEIGHT_STATUS_SEVERLY_UNDERWEIGHT = 200
         val WEIGHT_STATUS_UNDERWEIGHT = 201
         val WEIGHT_STATUS_NORMAL = 202
+        val WEIGHT_STATUS_TOO_OLD = 103
+
+        fun getStringEquivalent(id: Int): String {
+            return when (id) {
+                WEIGHT_STATUS_SEVERLY_UNDERWEIGHT -> "SUW"
+                WEIGHT_STATUS_UNDERWEIGHT -> "UW"
+                WEIGHT_STATUS_NORMAL -> "N"
+                else -> ""
+            }
+        }
+
+        fun getFullStringEquivalent(id: Int): String {
+            return when (id) {
+                WEIGHT_STATUS_SEVERLY_UNDERWEIGHT -> "Severly Underweight"
+                WEIGHT_STATUS_UNDERWEIGHT -> "Underweight"
+                WEIGHT_STATUS_NORMAL -> "Normal"
+                else -> ""
+            }
+        }
 
         val maleWeightForAge = arrayOf(
             doubleArrayOf(2.1, 2.2, 2.4, 2.5, 4.4),

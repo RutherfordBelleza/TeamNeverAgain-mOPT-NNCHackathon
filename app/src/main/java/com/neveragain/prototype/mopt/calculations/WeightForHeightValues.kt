@@ -1,5 +1,7 @@
 package com.neveragain.prototype.mopt.calculations
 
+import android.os.health.HealthStats
+
 class WeightForHeightValues {
     companion object {
 
@@ -8,7 +10,29 @@ class WeightForHeightValues {
         val HEALTH_STATUS_NORMAL = 302
         val HEALTH_STATUS_OVERWEIGHT = 303
         val HEALTH_STATUS_OBESE = 304
+        val HEALTH_STATUS_TOO_OLD = 305
 
+        fun getStringEquivalent(id: Int): String {
+            return when (id) {
+                HEALTH_STATUS_SEVERLY_ACUTE_MALNUTRITION -> "SAM"
+                HEALTH_STATUS_MODERATE_ACUTE_MALNUTRITION -> "MAM"
+                HEALTH_STATUS_NORMAL -> "N"
+                HEALTH_STATUS_OVERWEIGHT -> "OW"
+                HEALTH_STATUS_OBESE -> "Ob"
+                else -> ""
+            }
+        }
+
+        fun getFullStringEquivalent(id: Int): String {
+            return when (id) {
+                HEALTH_STATUS_SEVERLY_ACUTE_MALNUTRITION -> "Severly Acute Malnutrition"
+                HEALTH_STATUS_MODERATE_ACUTE_MALNUTRITION -> "Moderate Acute Malnutrition"
+                HEALTH_STATUS_NORMAL -> "Normal"
+                HEALTH_STATUS_OVERWEIGHT -> "Overweight"
+                HEALTH_STATUS_OBESE -> "Obese"
+                else -> ""
+            }
+        }
 
         val femaleMinimumHeight_0to24 = 45.0
         val femaleMaximumHeight_0to24 = 110.0

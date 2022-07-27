@@ -1,15 +1,12 @@
 package com.neveragain.prototype.mopt.fragment.add
 
-import android.app.DatePickerDialog
-import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.EditText
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.neveragain.prototype.mopt.R
@@ -17,7 +14,6 @@ import com.neveragain.prototype.mopt.calculations.DateCalculations
 import com.neveragain.prototype.mopt.data.Child
 import com.neveragain.prototype.mopt.data.ChildViewModel
 import com.neveragain.prototype.mopt.databinding.FragmentNewChildBinding
-import java.text.SimpleDateFormat
 import java.util.*
 
 class NewChildFragment : Fragment() {

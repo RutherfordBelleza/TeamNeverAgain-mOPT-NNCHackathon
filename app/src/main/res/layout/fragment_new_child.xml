@@ -167,7 +167,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
                 android:labelFor="@id/weightField"
-                android:text="Weight"
+                android:text="Weight (kg)"
                 android:theme="@style/CustomTextView" />
 
             <EditText
@@ -184,7 +184,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
                 android:labelFor="@id/heightField"
-                android:text="Height"
+                android:text="Height (cm)"
                 android:theme="@style/CustomTextView" />
 
             <EditText

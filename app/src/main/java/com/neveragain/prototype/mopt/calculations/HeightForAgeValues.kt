@@ -7,6 +7,27 @@ class HeightForAgeValues {
         val HEIGHT_STATUS_STUNTED = 101
         val HEIGHT_STATUS_NORMAL = 102
         val HEIGHT_STATUS_TALL = 103
+        val HEIGHT_STATUS_TOO_OLD = 104
+
+        fun getStringEquivalent(id: Int): String {
+            return when (id) {
+                HEIGHT_STATUS_SEVERLY_STUNTED -> "SSt"
+                HEIGHT_STATUS_STUNTED -> "St"
+                HEIGHT_STATUS_NORMAL -> "N"
+                HEIGHT_STATUS_TALL -> "T"
+                else -> ""
+            }
+        }
+
+        fun getFullStringEquivalent(id: Int): String {
+            return when (id) {
+                HEIGHT_STATUS_SEVERLY_STUNTED -> "Severly Stunted"
+                HEIGHT_STATUS_STUNTED -> "Stunted"
+                HEIGHT_STATUS_NORMAL -> "Normal"
+                HEIGHT_STATUS_TALL -> "Tall"
+                else -> ""
+            }
+        }
 
         val maleHeightForAge = arrayOf(
             doubleArrayOf(44.1, 44.2, 46.0, 46.1, 53.7, 53.8),
