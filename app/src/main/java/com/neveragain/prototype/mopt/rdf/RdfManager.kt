@@ -1,7 +1,5 @@
 package com.quinnpiling.quinn.rdf
 
-import android.Manifest
-import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.Paint
 

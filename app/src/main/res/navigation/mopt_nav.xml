@@ -13,10 +13,12 @@
         <action
             android:id="@+id/action_listFragment_to_newSubjectFragment"
             app:destination="@id/newSubjectFragment"
+            app:enterAnim="@android:anim/fade_in"
             app:launchSingleTop="true" />
         <action
             android:id="@+id/action_listFragment_to_childInformationFragment"
             app:destination="@id/childInformationFragment"
+            app:enterAnim="@android:anim/fade_in"
             app:launchSingleTop="true" />
     </fragment>
     <fragment
@@ -27,6 +29,7 @@
         <action
             android:id="@+id/action_newSubjectFragment_to_listFragment"
             app:destination="@id/listFragment"
+            app:enterAnim="@android:anim/fade_in"
             app:launchSingleTop="true"
             app:popUpTo="@id/listFragment"
             app:popUpToInclusive="true" />
@@ -39,6 +42,7 @@
         <action
             android:id="@+id/action_childInformationFragment_to_listFragment"
             app:destination="@id/listFragment"
+            app:enterAnim="@android:anim/fade_in"
             app:launchSingleTop="true"
             app:popUpTo="@id/listFragment"
             app:popUpToInclusive="true" />
@@ -85,6 +89,7 @@
         <action
             android:id="@+id/action_childInformationFragment_to_updateChildFragment2"
             app:destination="@id/updateChildFragment2"
+            app:enterAnim="@android:anim/fade_in"
             app:launchSingleTop="true" />
         <argument
             android:name="infoIsIndigenousPreschoolChild"
@@ -139,6 +144,7 @@
         <action
             android:id="@+id/action_updateChildFragment2_to_childInformationFragment"
             app:destination="@id/childInformationFragment"
+            app:enterAnim="@android:anim/fade_in"
             app:launchSingleTop="true"
             app:popUpTo="@id/childInformationFragment"
             app:popUpToInclusive="true" />

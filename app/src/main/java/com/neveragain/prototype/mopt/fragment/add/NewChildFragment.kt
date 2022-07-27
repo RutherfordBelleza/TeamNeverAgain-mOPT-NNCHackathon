@@ -11,6 +11,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.neveragain.prototype.mopt.R
 import com.neveragain.prototype.mopt.calculations.DateCalculations
+import com.neveragain.prototype.mopt.calculations.HeightForAgeValues
+import com.neveragain.prototype.mopt.calculations.WeightForAgeValues
+import com.neveragain.prototype.mopt.calculations.WeightForHeightValues
 import com.neveragain.prototype.mopt.data.Child
 import com.neveragain.prototype.mopt.data.ChildViewModel
 import com.neveragain.prototype.mopt.databinding.FragmentNewChildBinding
@@ -68,7 +71,8 @@ class NewChildFragment : Fragment() {
             val caregiverContactString = binding.caregiverContactField.text.toString()
             val addressString = binding.addressField.text.toString()
             val sexString = binding.sexField.selectedItem.toString()
-            val isIndigenousPreschoolChildString = binding.isIndigenousPreschoolChildField.selectedItem.toString()
+            val isIndigenousPreschoolChildString =
+                binding.isIndigenousPreschoolChildField.selectedItem.toString()
             val birthDateString = binding.birthDateField.text.toString()
             val weighingDateString = binding.weighingDateField.text.toString()
             val weightString = binding.weightField.text.toString()
@@ -93,7 +97,7 @@ class NewChildFragment : Fragment() {
     }
 
     private fun checkInput(): Boolean {
-        return if (
+        if (
             binding.childNameField.text.isNotBlank() &&
             binding.addressField.text.isNotBlank() &&
             binding.caregiverNameField.text.isNotBlank() &&
@@ -102,11 +106,40 @@ class NewChildFragment : Fragment() {
             binding.weightField.text.isNotBlank() &&
             binding.heightField.text.isNotBlank()
         ) {
+            //check age
+            val ageInMonths = DateCalculations.getMonthsBetweenDateStrings(
+                binding.birthDateField.text.toString(),
+                binding.weighingDateField.text.toString()
+            )
+            if (ageInMonths < 0 || ageInMonths > 71) {
+                Toast.makeText(
+                    requireContext(),
+                    "Invalid Birthdate and Weighing Date!",
+                    Toast.LENGTH_LONG
+                ).show()
+                return false
+            }
+
+            if (binding.sexField.selectedItem.toString() == "F"){
+                //check input weight
+                if (binding.weightField.text.toString().toDouble() > WeightForAgeValues.femaleWeightForAge[ageInMonths][4]){
+                    Toast.makeText(requireContext(), "Weight is too high", Toast.LENGTH_LONG).show()
+                    return false
+                }
+
+            } else {
+                //check input weight
+                if (binding.weightField.text.toString().toDouble() > WeightForAgeValues.maleWeightForAge[ageInMonths][4]){
+                    Toast.makeText(requireContext(), "Weight is too high", Toast.LENGTH_LONG).show()
+                    return false
+                }
+            }
+
             Toast.makeText(requireContext(), "Successfully Added!", Toast.LENGTH_LONG).show()
-            true
+            return true
         } else {
             Toast.makeText(requireContext(), "Please fill all fields", Toast.LENGTH_LONG).show()
-            false
+            return false
         }
     }
 

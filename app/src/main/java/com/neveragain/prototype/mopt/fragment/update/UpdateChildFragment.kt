@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.neveragain.prototype.mopt.R
 import com.neveragain.prototype.mopt.calculations.DateCalculations
+import com.neveragain.prototype.mopt.calculations.WeightForAgeValues
 import com.neveragain.prototype.mopt.data.Child
 import com.neveragain.prototype.mopt.data.ChildViewModel
 import com.neveragain.prototype.mopt.databinding.FragmentUpdateChildBinding
@@ -158,6 +159,38 @@ class UpdateChildFragment : Fragment() {
             binding.updateWeightField.text.isNotBlank() &&
             binding.updateHeightField.text.isNotBlank()
         ) {
+            //check age
+            val ageInMonths = DateCalculations.getMonthsBetweenDateStrings(
+                binding.updateBirthDateField.text.toString(),
+                binding.updateWeighingDateField.text.toString()
+            )
+            if (ageInMonths < 0 || ageInMonths > 71) {
+                Toast.makeText(
+                    requireContext(),
+                    "Invalid Birthdate and Weighing Date!",
+                    Toast.LENGTH_LONG
+                ).show()
+                return false
+            }
+
+            if (binding.updateSexField.selectedItem.toString() == "F") {
+                //check input weight
+                if (binding.updateWeightField.text.toString()
+                        .toDouble() > WeightForAgeValues.femaleWeightForAge[ageInMonths][4]
+                ) {
+                    Toast.makeText(requireContext(), "Weight is too high", Toast.LENGTH_LONG).show()
+                    return false
+                }
+
+            } else {
+                //check input weight
+                if (binding.updateWeightField.text.toString()
+                        .toDouble() > WeightForAgeValues.maleWeightForAge[ageInMonths][4]
+                ) {
+                    Toast.makeText(requireContext(), "Weight is too high", Toast.LENGTH_LONG).show()
+                    return false
+                }
+            }
             Toast.makeText(requireContext(), "Successfully Updated!", Toast.LENGTH_LONG).show()
             true
         } else {

@@ -1,7 +1,5 @@
 package com.neveragain.prototype.mopt.calculations
 
-import android.os.health.HealthStats
-
 class WeightForHeightValues {
     companion object {
 

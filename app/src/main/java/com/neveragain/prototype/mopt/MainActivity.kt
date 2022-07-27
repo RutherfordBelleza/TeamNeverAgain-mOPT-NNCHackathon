@@ -1,6 +1,5 @@
 package com.neveragain.prototype.mopt
 
-import android.R
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -14,6 +13,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -23,11 +23,11 @@ import com.neveragain.prototype.mopt.databinding.ActivityMainBinding
 import com.neveragain.prototype.mopt.rdf.document.ExportablePdf
 import com.quinnpiling.quinn.rdf.RdfConstants
 import com.quinnpiling.quinn.rdf.RdfDocument
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import java.io.File
-import java.io.FileOutputStream
+import org.apache.poi.ss.usermodel.Cell
+import org.apache.poi.ss.usermodel.CellType
+import org.apache.poi.xssf.usermodel.XSSFWorkbook
+import java.io.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -67,7 +67,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val navHostFragment = supportFragmentManager.findFragmentById(com.neveragain.prototype.mopt.R.id.fragmentContainerView) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(com.neveragain.prototype.mopt.R.id.fragmentContainerView) as NavHostFragment
         val navController = navHostFragment.navController
         setupActionBarWithNavController(navController)
     }
@@ -79,8 +80,92 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+//    fun copyFile(input: InputStream?, output: OutputStream?): Boolean {
+//        try {
+//            val buf = ByteArray(1024)
+//            var len: Int
+//            if (input != null) {
+//                while (input.read(buf).also { len = it } > 0) {
+//                    output?.write(buf, 0, len)
+//                }
+//            }
+//        } catch (e: java.lang.Exception) {
+//            e.printStackTrace()
+//            return false
+//        } finally {
+//            try {
+//                if (input != null) input.close()
+//                if (output != null) output.close()
+//            } catch (e: java.lang.Exception) {
+//            }
+//        }
+//        return true
+//    }
+//
+//    private fun buildExcelFile(is500: Boolean) {
+//        val fileNameWithExtension = "excel_output.xlsx"
+//        val tempFileNameWithExtension = "excel_temp.xlsx"
+//
+//        val excelFile = File(
+//            applicationContext.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS),
+//            fileNameWithExtension
+//        )
+//        val tempExcel = File(
+//            applicationContext.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS),
+//            tempFileNameWithExtension
+//        )
+//        val tempOutput = FileOutputStream(tempExcel)
+//
+//        val oPTFile = if (is500) {
+//            resources.openRawResource(
+//                resources.getIdentifier(
+//                    "opt_500people",
+//                    "raw",
+//                    packageName
+//                )
+//            )
+//        } else {
+//            resources.openRawResource(
+//                resources.getIdentifier(
+//                    "opt_1000people",
+//                    "raw",
+//                    packageName
+//                )
+//            )
+//        }
+//        copyFile(oPTFile, tempOutput)
+//        oPTFile.close()
+//        tempOutput.close()
+//
+//        val inputFile = FileInputStream(tempExcel)
+//
+//        val workbook = XSSFWorkbook(inputFile) //get workbook
+//        val sheet = workbook.getSheet("Sheet1") // declare sheet name
+//
+//        val bookData = Array(500) {
+//            arrayOfNulls<String>(
+//                13
+//            )
+//        }
+//
+//        for ((j, Book) in bookData.withIndex()) {
+//            for ((i, Item) in Book.withIndex()) {
+//                println(Item)
+//                val cell = sheet.getRow(14 + j).getCell(1 + i)
+//                cell.setCellType(CellType.STRING)
+//                cell.setCellValue(Item)
+//            }
+//        }
+//
+//        val output = FileOutputStream(excelFile)
+//        workbook.write(output)
+//
+//        output.close()
+//        workbook.close()
+//    }
+
     private fun buildPDF(childTable: List<Child>) {
-        val fileNameWithExtension = "output.pdf"
+        val fileNameWithExtension = "pdf_output.pdf"
         val pdfFile = File(
             applicationContext.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS),
             fileNameWithExtension
@@ -93,6 +178,15 @@ class MainActivity : AppCompatActivity() {
         )
         ExportablePdf.addDataTable(childTable, document)
         document.close()
+
+        val tempUri = FileProvider.getUriForFile(this, applicationContext.packageName + ".fileprovider", pdfFile)
+
+        val emailIntent = Intent(Intent.ACTION_SEND);
+        emailIntent.type = "plain/text";
+        if (tempUri != null) {
+            emailIntent.putExtra(Intent.EXTRA_STREAM, tempUri);
+        }
+        this.startActivity(Intent.createChooser(emailIntent, "Sending email..."));
     }
 
     private fun requestPermission() {

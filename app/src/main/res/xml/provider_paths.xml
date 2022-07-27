@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <external-files-path
+        name="external_photos"
+        path="Pictures" />
+    <external-files-path
+        name="external_documents"
+        path="Documents" />
+    <files-path
+        name="internal_files"
+        path="."/>
+    <files-path
+        name="internal_photos"
+        path="Photos"/>
+    <files-path
+        name="internal_documents"
+        path="Documents"/>
+    <files-path
+        name="internal_documents"
+        path="Update"/>
+</paths>
