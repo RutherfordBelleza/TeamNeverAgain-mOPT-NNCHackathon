@@ -1,6 +1,7 @@
 package com.neveragain.prototype.mopt.fragment.info
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,10 +35,10 @@ class ChildInformationFragment : Fragment() {
             bundle.getString("infoIsIndigenousPreschoolChild")!!,
             bundle.getString("infoBirthDate")!!,
             bundle.getString("infoWeighingDate")!!,
-            bundle.getFloat("infoWeight").toDouble(),
-            bundle.getFloat("infoHeight").toDouble()
+            bundle.getFloat("infoWeight"),
+            bundle.getFloat("infoHeight")
         )
-
+        Log.i("RUTHER", "${currentChild.weight}")
         binding.infoChildNameText.text = currentChild.fullName
         binding.infoAddressText.text = currentChild.address
         binding.infoCareGiverNameText.text = currentChild.nameOfCaregiver

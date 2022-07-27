@@ -5,7 +5,7 @@ import kotlin.math.round
 class OptCalculator {
     companion object {
 
-        fun getHeightForAge(height: Double, ageInMonths: Int, isFemale: Boolean): Int {
+        fun getHeightForAge(height: Float, ageInMonths: Int, isFemale: Boolean): Int {
             if (ageInMonths > 72) {
                 return HeightForAgeValues.HEIGHT_STATUS_TOO_OLD
             }
@@ -32,7 +32,7 @@ class OptCalculator {
             }
         }
 
-        fun getWeightForAge(weight: Double, ageInMonths: Int, isFemale: Boolean): Int {
+        fun getWeightForAge(weight: Float, ageInMonths: Int, isFemale: Boolean): Int {
             if (ageInMonths > 72) {
                 return WeightForAgeValues.WEIGHT_STATUS_TOO_OLD
             }
@@ -56,8 +56,8 @@ class OptCalculator {
         }
 
         fun getWeightForHeight(
-            height: Double,
-            weight: Double,
+            height: Float,
+            weight: Float,
             ageInMonths: Int,
             isFemale: Boolean
         ): Int {

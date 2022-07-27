@@ -88,8 +88,8 @@ class NewChildFragment : Fragment() {
                 isIndigenousPreschoolChildString,
                 birthDateString,
                 weighingDateString,
-                weightString.toDouble(),
-                heightString.toDouble()
+                weightString.toFloat(),
+                heightString.toFloat()
             )
             mChildViewModel.addChild(newChild)
             findNavController().navigate(R.id.action_newSubjectFragment_to_listFragment)
@@ -120,18 +120,66 @@ class NewChildFragment : Fragment() {
                 return false
             }
 
-            if (binding.sexField.selectedItem.toString() == "F"){
+            if (binding.sexField.selectedItem.toString() == "F") {
                 //check input weight
-                if (binding.weightField.text.toString().toDouble() > WeightForAgeValues.femaleWeightForAge[ageInMonths][4]){
+                if (binding.weightField.text.toString().toFloat() > WeightForAgeValues.femaleWeightForAge[ageInMonths][4]
+                ) {
                     Toast.makeText(requireContext(), "Weight is too high", Toast.LENGTH_LONG).show()
                     return false
+                }
+                if (ageInMonths < 24) {
+                    if (binding.heightField.text.toString()
+                            .toFloat() < 45 || binding.heightField.text.toString()
+                            .toFloat() > 110
+                    ) {
+                        Toast.makeText(
+                            requireContext(),
+                            "Height is outside the range",
+                            Toast.LENGTH_LONG
+                        ).show()
+                        return false
+                    }
+                } else {
+                    if (binding.heightField.text.toString()
+                            .toFloat() < 65 || binding.heightField.text.toString()
+                            .toFloat() > 110
+                    ) {
+                        Toast.makeText(
+                            requireContext(),
+                            "Height is outside the range",
+                            Toast.LENGTH_LONG
+                        ).show()
+                        return false
+                    }
                 }
 
             } else {
                 //check input weight
-                if (binding.weightField.text.toString().toDouble() > WeightForAgeValues.maleWeightForAge[ageInMonths][4]){
+                if (binding.weightField.text.toString()
+                        .toFloat() > WeightForAgeValues.maleWeightForAge[ageInMonths][4]
+                ) {
                     Toast.makeText(requireContext(), "Weight is too high", Toast.LENGTH_LONG).show()
                     return false
+                }
+
+                if (ageInMonths < 24) {
+                    if (binding.heightField.text.toString().toFloat() < 45) {
+                        Toast.makeText(
+                            requireContext(),
+                            "Height is outside the range",
+                            Toast.LENGTH_LONG
+                        ).show()
+                        return false
+                    }
+                } else {
+                    if (binding.heightField.text.toString().toFloat() < 65) {
+                        Toast.makeText(
+                            requireContext(),
+                            "Height is outside the range",
+                            Toast.LENGTH_LONG
+                        ).show()
+                        return false
+                    }
                 }
             }
 

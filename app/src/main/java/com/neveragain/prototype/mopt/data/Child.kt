@@ -15,6 +15,6 @@ data class Child(
     val isIndigenousPreschoolChild: String,
     val dateOfBirth: String,
     val dateOfWeighing: String,
-    val weight: Double,
-    val height: Double
+    val weight: Float,
+    val height: Float
 )
