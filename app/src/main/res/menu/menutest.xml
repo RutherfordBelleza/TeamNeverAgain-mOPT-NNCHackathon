@@ -6,12 +6,12 @@
         android:icon="@drawable/ic_baseline_email_24"
         android:orderInCategory="100"
         android:title="email"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_deleteall"
         android:icon="@drawable/ic_baseline_delete_outline_24"
         android:orderInCategory="100"
         android:title="deleteall"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
 
 </menu>

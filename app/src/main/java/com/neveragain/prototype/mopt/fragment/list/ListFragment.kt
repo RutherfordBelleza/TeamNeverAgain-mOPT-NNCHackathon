@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -61,5 +62,20 @@ class ListFragment : Fragment(), ListClickHandler {
         bundle.putString("infoIsIndigenousPreschoolChild", child.isIndigenousPreschoolChild)
         findNavController().navigate(R.id.action_listFragment_to_childInformationFragment, bundle)
     }
+
+    fun deleteAllUsers(){
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setPositiveButton("Yes") {_, _ ->
+
+        }
+        builder.setNegativeButton("No"){_,_->
+
+        }
+        builder.setTitle("Delete All Data")
+        builder.setMessage("Are you sure you want to delete them all?")
+        builder.create().show()
+    }
+
+
 
 }

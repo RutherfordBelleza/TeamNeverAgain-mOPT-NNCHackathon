@@ -10,6 +10,7 @@ import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -40,37 +41,49 @@ class MainActivity : AppCompatActivity() {
 
     // create an action bar button
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // R.menu.mymenu is a reference to an xml file named mymenu.xml which should be inside your res/menu directory.
-        // If you don't have res/menu, just create a directory named "menu" inside res
-        menuInflater.inflate(com.neveragain.prototype.mopt.R.menu.menutest, menu)
+        menuInflater.inflate(R.menu.menutest, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     // handle button activities
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id: Int = item.itemId
-        if (id == com.neveragain.prototype.mopt.R.id.action_email) {
+        if (id == R.id.action_email) {
             if (checkPermission()) {
                 exportData()
             } else {
                 requestPermission()
             }
-        } else if (id == com.neveragain.prototype.mopt.R.id.action_deleteall) {
+        } else if (id == R.id.action_deleteall) {
+            deleteAllUsers()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun deleteAllUsers() {
+        val builder = AlertDialog.Builder(this)
+        builder.setPositiveButton("Yes") { _, _ ->
             lifecycleScope.launch {
                 ChildDatabase.getDatabase(selff).childDao().deleteAll()
             }
         }
-        return super.onOptionsItemSelected(item)
+        builder.setNegativeButton("No") { _, _ ->
+
+        }
+        builder.setTitle("Delete All Children Data")
+        builder.setMessage("Are you sure you want to delete everything?")
+        builder.create().show()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(com.neveragain.prototype.mopt.R.id.fragmentContainerView) as NavHostFragment
-        val navController = navHostFragment.navController
-        setupActionBarWithNavController(navController)
+        supportActionBar?.title = "MOPT"
+//        val navHostFragment =
+//        supportFragmentManager.findFragmentById(com.neveragain.prototype.mopt.R.id.fragmentContainerView) as NavHostFragment
+//        val navController = navHostFragment.navController
+//        setupActionBarWithNavController(navController)
     }
 
     private fun exportData() {
@@ -179,7 +192,11 @@ class MainActivity : AppCompatActivity() {
         ExportablePdf.addDataTable(childTable, document)
         document.close()
 
-        val tempUri = FileProvider.getUriForFile(this, applicationContext.packageName + ".fileprovider", pdfFile)
+        val tempUri = FileProvider.getUriForFile(
+            this,
+            applicationContext.packageName + ".fileprovider",
+            pdfFile
+        )
 
         val emailIntent = Intent(Intent.ACTION_SEND);
         emailIntent.type = "plain/text";
@@ -243,8 +260,6 @@ class MainActivity : AppCompatActivity() {
                 val read = grantResults[1] == PackageManager.PERMISSION_GRANTED
                 if (write && read) {
                     exportData()
-                } else {
-
                 }
             }
         }

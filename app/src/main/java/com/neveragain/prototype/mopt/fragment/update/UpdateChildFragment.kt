@@ -3,6 +3,7 @@ package com.neveragain.prototype.mopt.fragment.update
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
@@ -13,10 +14,10 @@ import androidx.navigation.fragment.findNavController
 import com.neveragain.prototype.mopt.R
 import com.neveragain.prototype.mopt.calculations.DateCalculations
 import com.neveragain.prototype.mopt.calculations.WeightForAgeValues
-import com.neveragain.prototype.mopt.calculations.WeightForHeightValues
 import com.neveragain.prototype.mopt.data.Child
 import com.neveragain.prototype.mopt.data.ChildViewModel
 import com.neveragain.prototype.mopt.databinding.FragmentUpdateChildBinding
+
 
 class UpdateChildFragment : Fragment() {
 
@@ -24,12 +25,17 @@ class UpdateChildFragment : Fragment() {
     private lateinit var currentChild: Child
     private lateinit var mChildViewModel: ChildViewModel
 
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        menu.findItem(R.id.action_email).setVisible(false)
+        menu.findItem(R.id.action_deleteall).setVisible(false)
+        super.onPrepareOptionsMenu(menu)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentUpdateChildBinding.inflate(inflater, container, false)
-
         val bundle = this.arguments
 
         currentChild = Child(
@@ -52,7 +58,7 @@ class UpdateChildFragment : Fragment() {
 
         ArrayAdapter.createFromResource(
             requireContext(),
-            R.array.is_indigenous_values,
+            com.neveragain.prototype.mopt.R.array.is_indigenous_values,
             android.R.layout.simple_spinner_item
         ).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -61,7 +67,7 @@ class UpdateChildFragment : Fragment() {
 
         ArrayAdapter.createFromResource(
             requireContext(),
-            R.array.sex_values,
+            com.neveragain.prototype.mopt.R.array.sex_values,
             android.R.layout.simple_spinner_item
         ).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
