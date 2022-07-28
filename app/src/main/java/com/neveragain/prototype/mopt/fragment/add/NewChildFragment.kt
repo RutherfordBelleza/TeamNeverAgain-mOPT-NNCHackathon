@@ -11,9 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.neveragain.prototype.mopt.R
 import com.neveragain.prototype.mopt.calculations.DateCalculations
-import com.neveragain.prototype.mopt.calculations.HeightForAgeValues
 import com.neveragain.prototype.mopt.calculations.WeightForAgeValues
-import com.neveragain.prototype.mopt.calculations.WeightForHeightValues
 import com.neveragain.prototype.mopt.data.Child
 import com.neveragain.prototype.mopt.data.ChildViewModel
 import com.neveragain.prototype.mopt.databinding.FragmentNewChildBinding
@@ -111,7 +109,11 @@ class NewChildFragment : Fragment() {
                 binding.birthDateField.text.toString(),
                 binding.weighingDateField.text.toString()
             )
-            if (ageInMonths < 0 || ageInMonths > 71) {
+            if (ageInMonths < 0 || ageInMonths > 71 || !DateCalculations.checkIfFirstDateIsBeforeSecondDate(
+                    binding.birthDateField.text.toString(),
+                    binding.weighingDateField.text.toString()
+                )
+            ) {
                 Toast.makeText(
                     requireContext(),
                     "Invalid Birthdate and Weighing Date!",
@@ -122,7 +124,8 @@ class NewChildFragment : Fragment() {
 
             if (binding.sexField.selectedItem.toString() == "F") {
                 //check input weight
-                if (binding.weightField.text.toString().toFloat() > WeightForAgeValues.femaleWeightForAge[ageInMonths][4]
+                if (binding.weightField.text.toString()
+                        .toFloat() > 40
                 ) {
                     Toast.makeText(requireContext(), "Weight is too high", Toast.LENGTH_LONG).show()
                     return false
@@ -156,7 +159,7 @@ class NewChildFragment : Fragment() {
             } else {
                 //check input weight
                 if (binding.weightField.text.toString()
-                        .toFloat() > WeightForAgeValues.maleWeightForAge[ageInMonths][4]
+                        .toFloat() > 40
                 ) {
                     Toast.makeText(requireContext(), "Weight is too high", Toast.LENGTH_LONG).show()
                     return false

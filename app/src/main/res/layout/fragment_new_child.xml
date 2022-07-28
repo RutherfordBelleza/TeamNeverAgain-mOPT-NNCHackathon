@@ -28,9 +28,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingStart="32dp"
+            android:paddingStart="16dp"
             android:paddingTop="40dp"
-            android:paddingEnd="32dp"
+            android:paddingEnd="16dp"
             android:paddingBottom="80dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -40,6 +40,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:layout_marginBottom="4dp"
                 android:labelFor="@id/childNameField"
                 android:text="Child's Name"
@@ -50,15 +51,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
                 android:background="@drawable/custom_edittext"
                 android:minHeight="48dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
                 android:theme="@style/CustomEditText" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:layout_marginBottom="4dp"
                 android:labelFor="@id/caregiverNameField"
                 android:text="Mother/Caregiver's Name"
@@ -71,11 +73,14 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/custom_edittext"
                 android:minHeight="48dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
                 android:theme="@style/CustomEditText" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:layout_marginBottom="4dp"
                 android:labelFor="@id/caregiverContactField"
                 android:text="Mother/Caregiver's Contact Number (N/A if none)"
@@ -88,11 +93,14 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/custom_edittext"
                 android:minHeight="48dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
                 android:theme="@style/CustomEditText" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:layout_marginBottom="4dp"
                 android:labelFor="@id/addressField"
                 android:text="Location/Address of Residence"
@@ -105,11 +113,14 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/custom_edittext"
                 android:minHeight="48dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
                 android:theme="@style/CustomEditText" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:layout_marginBottom="4dp"
                 android:labelFor="@id/isIndigenousPreschoolChildField"
                 android:text="Is Indigenous Preschool Child?"
@@ -127,6 +138,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:layout_marginBottom="4dp"
                 android:labelFor="@id/sexField"
                 android:text="Sex" />
@@ -143,6 +155,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:layout_marginBottom="4dp"
                 android:labelFor="@id/birthDateField"
                 android:text="Birth Date"
@@ -157,11 +170,14 @@
                 android:clickable="true"
                 android:focusable="false"
                 android:longClickable="false"
-                android:minHeight="48dp" />
+                android:minHeight="48dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:layout_marginBottom="4dp"
                 android:labelFor="@id/weighingDateField"
                 android:text="Weighing Date"
@@ -176,11 +192,14 @@
                 android:clickable="true"
                 android:focusable="false"
                 android:longClickable="false"
-                android:minHeight="48dp" />
+                android:minHeight="48dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:layout_marginBottom="4dp"
                 android:labelFor="@id/weightField"
                 android:text="Weight (kg)"
@@ -193,11 +212,14 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/custom_edittext"
                 android:inputType="numberDecimal"
-                android:minHeight="48dp" />
+                android:minHeight="48dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:layout_marginBottom="4dp"
                 android:labelFor="@id/heightField"
                 android:text="Height (cm)"
@@ -210,7 +232,9 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/custom_edittext"
                 android:inputType="numberDecimal"
-                android:minHeight="48dp" />
+                android:minHeight="48dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp" />
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

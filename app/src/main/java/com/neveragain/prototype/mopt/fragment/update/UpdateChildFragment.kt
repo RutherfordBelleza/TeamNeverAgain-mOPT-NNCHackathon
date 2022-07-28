@@ -171,7 +171,11 @@ class UpdateChildFragment : Fragment() {
                 binding.updateBirthDateField.text.toString(),
                 binding.updateWeighingDateField.text.toString()
             )
-            if (ageInMonths < 0 || ageInMonths > 71) {
+            if (ageInMonths < 0 || ageInMonths > 71 || !DateCalculations.checkIfFirstDateIsBeforeSecondDate(
+                    binding.updateBirthDateField.text.toString(),
+                    binding.updateWeighingDateField.text.toString()
+                )
+            ) {
                 Toast.makeText(
                     requireContext(),
                     "Invalid Birthdate and Weighing Date!",
@@ -183,7 +187,7 @@ class UpdateChildFragment : Fragment() {
             if (binding.updateSexField.selectedItem.toString() == "F") {
                 //check input weight
                 if (binding.updateWeightField.text.toString()
-                        .toFloat() > WeightForAgeValues.femaleWeightForAge[ageInMonths][4]
+                        .toFloat() > 40
                 ) {
                     Toast.makeText(requireContext(), "Weight is too high", Toast.LENGTH_LONG).show()
                     return false
@@ -217,7 +221,7 @@ class UpdateChildFragment : Fragment() {
             } else {
                 //check input weight
                 if (binding.updateWeightField.text.toString()
-                        .toFloat() > WeightForAgeValues.maleWeightForAge[ageInMonths][4]
+                        .toFloat() > 40
                 ) {
                     Toast.makeText(requireContext(), "Weight is too high", Toast.LENGTH_LONG).show()
                     return false

@@ -22,12 +22,12 @@ import com.neveragain.prototype.mopt.data.ChildDatabase
 import com.neveragain.prototype.mopt.databinding.ActivityMainBinding
 import com.neveragain.prototype.mopt.rdf.document.ExportablePdf
 import com.opencsv.CSVWriter
-import com.quinnpiling.quinn.rdf.RdfCell
 import com.quinnpiling.quinn.rdf.RdfConstants
 import com.quinnpiling.quinn.rdf.RdfDocument
-import com.quinnpiling.quinn.rdf.RdfManager
 import kotlinx.coroutines.launch
-import java.io.*
+import java.io.File
+import java.io.FileOutputStream
+import java.io.FileWriter
 
 
 class MainActivity : AppCompatActivity() {

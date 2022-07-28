@@ -68,5 +68,10 @@ class DateCalculations {
             return months.toInt()
         }
 
+        fun checkIfFirstDateIsBeforeSecondDate(firstDate: String, secondDate: String): Boolean {
+            val date1 = formDateStringToDate(firstDate)
+            val date2 = formDateStringToDate(secondDate)
+            return date1 <= date2
+        }
     }
 }
