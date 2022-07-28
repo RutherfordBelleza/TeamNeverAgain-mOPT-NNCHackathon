@@ -48,7 +48,11 @@ class ChildInformationFragment : Fragment() {
         binding.infoWeighingDateText.text = currentChild.dateOfWeighing
 
         binding.infoIsIndigenousPreschoolChildText.text = currentChild.isIndigenousPreschoolChild
-        binding.infoSexText.text = currentChild.sex
+        if (currentChild.sex == "F") {
+            binding.infoSexText.text = "Female"
+        } else {
+            binding.infoSexText.text = "Male"
+        }
         binding.infoHeightText.text = currentChild.height.toString()
         binding.infoWeightText.text = currentChild.weight.toString()
 
@@ -67,11 +71,13 @@ class ChildInformationFragment : Fragment() {
         val wflhString = WeightForHeightValues.getFullStringEquivalent(wflh)
         binding.infoWeightOverHeightText.text = "$wflhString"
 
-        val wfa = OptCalculator.getWeightForAge(currentChild.weight, ageInMonths, currentChild.sex == "F")
+        val wfa =
+            OptCalculator.getWeightForAge(currentChild.weight, ageInMonths, currentChild.sex == "F")
         val wfaString = WeightForAgeValues.getFullStringEquivalent(wfa)
         binding.infoWeightOverAgeText.text = "$wfaString"
 
-        val hfa = OptCalculator.getHeightForAge(currentChild.height, ageInMonths, currentChild.sex == "F")
+        val hfa =
+            OptCalculator.getHeightForAge(currentChild.height, ageInMonths, currentChild.sex == "F")
         val hfaString = HeightForAgeValues.getFullStringEquivalent(hfa)
         binding.infoHeightOverAgeText.text = "$hfaString"
 
@@ -95,7 +101,10 @@ class ChildInformationFragment : Fragment() {
         bundle.putFloat("infoWeight", currentChild.weight)
         bundle.putString("infoSex", currentChild.sex)
         bundle.putString("infoIsIndigenousPreschoolChild", currentChild.isIndigenousPreschoolChild)
-        findNavController().navigate(R.id.action_childInformationFragment_to_updateChildFragment2, bundle)
+        findNavController().navigate(
+            R.id.action_childInformationFragment_to_updateChildFragment2,
+            bundle
+        )
     }
 
 }

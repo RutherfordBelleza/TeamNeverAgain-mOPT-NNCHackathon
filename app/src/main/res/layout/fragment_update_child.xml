@@ -39,6 +39,15 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:labelFor="@id/childNameField"
+                android:text="Edit Child Data"
+                android:textSize="26dp"
+                android:theme="@style/CustomTextView" />
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -100,7 +109,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:labelFor="@id/updateCaregiverContactField"
-                android:text="Mother/Caregiver's Contact"
+                android:text="Mother/Caregiver's Contact (N/A if none)"
                 android:textSize="12sp" />
 
             <EditText
