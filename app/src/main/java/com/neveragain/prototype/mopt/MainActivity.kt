@@ -16,18 +16,17 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.setupActionBarWithNavController
+import com.neveragain.prototype.mopt.calculations.*
 import com.neveragain.prototype.mopt.data.Child
 import com.neveragain.prototype.mopt.data.ChildDatabase
 import com.neveragain.prototype.mopt.databinding.ActivityMainBinding
 import com.neveragain.prototype.mopt.rdf.document.ExportablePdf
+import com.opencsv.CSVWriter
+import com.quinnpiling.quinn.rdf.RdfCell
 import com.quinnpiling.quinn.rdf.RdfConstants
 import com.quinnpiling.quinn.rdf.RdfDocument
+import com.quinnpiling.quinn.rdf.RdfManager
 import kotlinx.coroutines.launch
-import org.apache.poi.ss.usermodel.Cell
-import org.apache.poi.ss.usermodel.CellType
-import org.apache.poi.xssf.usermodel.XSSFWorkbook
 import java.io.*
 
 
@@ -89,95 +88,110 @@ class MainActivity : AppCompatActivity() {
     private fun exportData() {
         lifecycleScope.launch {
             val childTable = ChildDatabase.getDatabase(selff).childDao().selectAll()
-            buildPDF(childTable)
+            val pdfFile = buildPDF(childTable)
+            val csvFile = buildExcelFile(childTable)
+
+            val tempUri = FileProvider.getUriForFile(
+                selff,
+                applicationContext.packageName + ".fileprovider",
+                pdfFile
+            )
+            val tempUri2 = FileProvider.getUriForFile(
+                selff,
+                applicationContext.packageName + ".fileprovider",
+                csvFile
+            )
+
+            val emailIntent = Intent(Intent.ACTION_SEND_MULTIPLE)
+            emailIntent.type = "plain/text"
+
+            val uris = ArrayList<Uri>()
+
+            if (tempUri != null && tempUri2 != null) {
+                uris.add(tempUri)
+                uris.add(tempUri2)
+                emailIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris);
+            }
+            startActivity(Intent.createChooser(emailIntent, "Sending email..."));
         }
     }
 
-//    fun copyFile(input: InputStream?, output: OutputStream?): Boolean {
-//        try {
-//            val buf = ByteArray(1024)
-//            var len: Int
-//            if (input != null) {
-//                while (input.read(buf).also { len = it } > 0) {
-//                    output?.write(buf, 0, len)
-//                }
-//            }
-//        } catch (e: java.lang.Exception) {
-//            e.printStackTrace()
-//            return false
-//        } finally {
-//            try {
-//                if (input != null) input.close()
-//                if (output != null) output.close()
-//            } catch (e: java.lang.Exception) {
-//            }
-//        }
-//        return true
-//    }
-//
-//    private fun buildExcelFile(is500: Boolean) {
-//        val fileNameWithExtension = "excel_output.xlsx"
-//        val tempFileNameWithExtension = "excel_temp.xlsx"
-//
-//        val excelFile = File(
-//            applicationContext.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS),
-//            fileNameWithExtension
-//        )
-//        val tempExcel = File(
-//            applicationContext.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS),
-//            tempFileNameWithExtension
-//        )
-//        val tempOutput = FileOutputStream(tempExcel)
-//
-//        val oPTFile = if (is500) {
-//            resources.openRawResource(
-//                resources.getIdentifier(
-//                    "opt_500people",
-//                    "raw",
-//                    packageName
-//                )
-//            )
-//        } else {
-//            resources.openRawResource(
-//                resources.getIdentifier(
-//                    "opt_1000people",
-//                    "raw",
-//                    packageName
-//                )
-//            )
-//        }
-//        copyFile(oPTFile, tempOutput)
-//        oPTFile.close()
-//        tempOutput.close()
-//
-//        val inputFile = FileInputStream(tempExcel)
-//
-//        val workbook = XSSFWorkbook(inputFile) //get workbook
-//        val sheet = workbook.getSheet("Sheet1") // declare sheet name
-//
-//        val bookData = Array(500) {
-//            arrayOfNulls<String>(
-//                13
-//            )
-//        }
-//
-//        for ((j, Book) in bookData.withIndex()) {
-//            for ((i, Item) in Book.withIndex()) {
-//                println(Item)
-//                val cell = sheet.getRow(14 + j).getCell(1 + i)
-//                cell.setCellType(CellType.STRING)
-//                cell.setCellValue(Item)
-//            }
-//        }
-//
-//        val output = FileOutputStream(excelFile)
-//        workbook.write(output)
-//
-//        output.close()
-//        workbook.close()
-//    }
+    private fun buildExcelFile(childTable: List<Child>): File {
+        val fileNameWithExtension = "csv_output.csv"
+        val csvFile = File(
+            applicationContext.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS),
+            fileNameWithExtension
+        )
+        val writer = CSVWriter(FileWriter(csvFile))
+        val data: ArrayList<Array<String>> = ArrayList()
+        data.add(
+            arrayOf(
+                "ID",
+                "Address",
+                "Name of Mother/Caregiver",
+                "Full Name of Child",
+                "Indigenous Preschool Child?",
+                "Sex",
+                "Date of Birth",
+                "Actual Date of Weighing",
+                "Weight",
+                "Height",
+                "Age in Months",
+                "Weight for Age Status",
+                "Height for Age Status",
+                "Weight for Length/Height"
+            )
+        )
 
-    private fun buildPDF(childTable: List<Child>) {
+        for (child in childTable) {
+
+            val ageInMonths = DateCalculations.getMonthsBetweenDateStrings(
+                child.dateOfBirth,
+                child.dateOfWeighing
+            )
+
+            val wfa = OptCalculator.getWeightForAge(child.weight, ageInMonths, child.sex == "F")
+            val wfaString = WeightForAgeValues.getStringEquivalent(wfa)
+
+            val hfa = OptCalculator.getHeightForAge(child.height, ageInMonths, child.sex == "F")
+            val hfaString = HeightForAgeValues.getStringEquivalent(hfa)
+
+            val wflh = OptCalculator.getWeightForHeight(
+                child.height,
+                child.weight,
+                ageInMonths,
+                child.sex == "F"
+            )
+            val wflhString = WeightForHeightValues.getStringEquivalent(wflh)
+
+            data.add(
+                arrayOf(
+                    child.id.toString(),
+                    child.address,
+                    child.nameOfCaregiver,
+                    child.fullName,
+                    child.isIndigenousPreschoolChild,
+                    child.sex,
+                    child.dateOfBirth,
+                    child.dateOfWeighing,
+                    child.weight.toString(),
+                    child.height.toString(),
+                    ageInMonths.toString(),
+                    wfaString,
+                    hfaString,
+                    wflhString
+                )
+            )
+        }
+
+        writer.writeAll(data)
+        writer.close();
+
+        return csvFile
+
+    }
+
+    private fun buildPDF(childTable: List<Child>): File {
         val fileNameWithExtension = "pdf_output.pdf"
         val pdfFile = File(
             applicationContext.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS),
@@ -192,18 +206,8 @@ class MainActivity : AppCompatActivity() {
         ExportablePdf.addDataTable(childTable, document)
         document.close()
 
-        val tempUri = FileProvider.getUriForFile(
-            this,
-            applicationContext.packageName + ".fileprovider",
-            pdfFile
-        )
+        return pdfFile
 
-        val emailIntent = Intent(Intent.ACTION_SEND);
-        emailIntent.type = "plain/text";
-        if (tempUri != null) {
-            emailIntent.putExtra(Intent.EXTRA_STREAM, tempUri);
-        }
-        this.startActivity(Intent.createChooser(emailIntent, "Sending email..."));
     }
 
     private fun requestPermission() {
