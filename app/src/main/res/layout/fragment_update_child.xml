@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
+        android:backgroundTint="#7BCA3D"
         android:clickable="true"
         android:contentDescription="update button"
         android:src="@drawable/ic_baseline_check_24"
@@ -27,10 +28,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingStart="8dp"
-            android:paddingTop="10dp"
-            android:paddingEnd="8dp"
-            android:paddingBottom="10dp"
+            android:paddingStart="32dp"
+            android:paddingTop="40dp"
+            android:paddingEnd="32dp"
+            android:paddingBottom="80dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -111,7 +112,7 @@
 
             <EditText
                 android:id="@+id/updateBirthDateField"
-                android:layout_width="match_parent"
+                android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/custom_edittext"
@@ -129,7 +130,7 @@
 
             <EditText
                 android:id="@+id/updateWeighingDateField"
-                android:layout_width="match_parent"
+                android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/custom_edittext"
@@ -147,7 +148,7 @@
 
             <Spinner
                 android:id="@+id/updateIsIndigenousPreschoolChildField"
-                android:layout_width="match_parent"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/custom_edittext"
@@ -163,7 +164,7 @@
 
             <Spinner
                 android:id="@+id/updateSexField"
-                android:layout_width="match_parent"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/custom_edittext"
@@ -179,7 +180,7 @@
 
             <EditText
                 android:id="@+id/updateHeightField"
-                android:layout_width="match_parent"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/custom_edittext"
@@ -195,7 +196,7 @@
 
             <EditText
                 android:id="@+id/updateWeightField"
-                android:layout_width="match_parent"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/custom_edittext"
