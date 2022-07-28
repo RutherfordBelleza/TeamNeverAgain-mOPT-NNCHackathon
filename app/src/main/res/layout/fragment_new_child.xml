@@ -124,6 +124,9 @@
                 android:minHeight="48dp"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
+                android:inputType="textMultiLine"
+                android:maxLines="3"
+                android:minLines="2"
                 android:theme="@style/CustomEditText" />
 
             <TextView
